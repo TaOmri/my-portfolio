@@ -2,6 +2,11 @@
 
 Next.js + Tailwind + GSAP/Lenis + Framer Motion.
 
+## Links
+- Live site: https://omri-tamir.vercel.app
+- GitHub: https://github.com/TaOmri/my-portfolio
+- Vercel dashboard: https://vercel.com/omri-tamir/my-portfolio
+
 ```bash
 npm run dev     # http://localhost:3000
 npm run build
@@ -18,4 +23,4 @@ npm run build
 2. Reference them in `lib/projects.ts` (`cover`, `gallery`, or `debutDrills`) with their pixel `width`/`height`.
 
 ## Deploy
-Push to GitHub and import the repo on Vercel.
+Pushing to `main` deploys to production on Vercel automatically.
