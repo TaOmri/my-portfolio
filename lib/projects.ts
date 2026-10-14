@@ -225,12 +225,13 @@ export const projects: Project[] = [
     summary:
       "A Hebrew, right‑to‑left site for a home kitchen that sells Yemenite jachnoon on Saturday mornings. The page tells the dish's overnight story as a scroll‑driven scene — a clock runs from 22:00 to 08:30 while the sky turns from night to dawn and the lid finally lifts — then hands off to a menu that builds a WhatsApp order in a few taps.",
     year: "2026",
-    status: "Small business · Hebrew (RTL)",
+    status: "Live · Small business",
     role: "Solo — design, illustration & development",
     platforms: ["Web (mobile‑first)"],
-    stack: ["Vanilla JavaScript", "HTML / CSS", "SVG illustration", "WhatsApp click‑to‑chat"],
+    stack: ["Vanilla JavaScript", "HTML / CSS", "SVG illustration", "WhatsApp click‑to‑chat", "Netlify"],
     accent: "#f0a94a",
     accent2: "#c4402b",
+    link: { label: "Open the live site", href: "https://jachnoon-talma.netlify.app/" },
     cover: jachnoonShot("morning", "08:30 — the lid lifts on a full pot"),
     problem:
       "A one‑woman kitchen that cooks once a week took orders through scattered calls and messages — no menu or prices in one place, and nothing that showed why jachnoon is worth waking up for.",
