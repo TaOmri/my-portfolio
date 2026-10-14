@@ -7,6 +7,7 @@ import Reveal from "@/components/Reveal";
 import MediaView from "@/components/visuals/MediaView";
 import MondialDemo from "@/components/case/MondialDemo";
 import DebutDemo from "@/components/case/DebutDemo";
+import JachnoonDemo from "@/components/case/JachnoonDemo";
 import Contact from "@/components/Contact";
 
 type Props = { params: Promise<{ slug: string }> };
@@ -19,6 +20,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const project = getProject((await params).slug);
   return project ? { title: project.title, description: project.summary } : {};
 }
+
+const highlights: Record<string, { label: string; title: string }> = {
+  debut: { label: "How it works", title: "Every drill, tracked in real time." },
+  mondial: { label: "How it plays", title: "Type a score. Watch the tournament build itself." },
+  jachnoon: { label: "How it scrolls", title: "One scroll, one night in the pot." },
+};
 
 function Label({ children }: { children: React.ReactNode }) {
   return <span className="font-mono text-xs uppercase tracking-widest text-muted">{children}</span>;
@@ -99,12 +106,12 @@ export default async function CaseStudy({ params }: Props) {
       <section className="border-y border-line bg-bg-2 px-4 py-28 md:px-10 md:py-36">
         <div className="mx-auto max-w-[1600px]">
           <Reveal className="mb-14 max-w-3xl">
-            <Label>{project.slug === "debut" ? "How it works" : "How it plays"}</Label>
-            <h2 className="mt-4 font-display text-4xl font-semibold tracking-tight md:text-6xl">
-              {project.slug === "debut" ? "Every drill, tracked in real time." : "Type a score. Watch the tournament build itself."}
-            </h2>
+            <Label>{highlights[project.slug].label}</Label>
+            <h2 className="mt-4 font-display text-4xl font-semibold tracking-tight md:text-6xl">{highlights[project.slug].title}</h2>
           </Reveal>
-          {project.slug === "debut" ? <DebutDemo platforms={project.platforms} /> : <MondialDemo />}
+          {project.slug === "debut" && <DebutDemo platforms={project.platforms} />}
+          {project.slug === "mondial" && <MondialDemo />}
+          {project.slug === "jachnoon" && <JachnoonDemo />}
         </div>
       </section>
 

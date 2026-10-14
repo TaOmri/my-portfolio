@@ -60,6 +60,22 @@ const mondialShot = (name: string, alt: string): Media => ({
   frame: "browser",
 });
 
+const jachnoonShot = (name: string, alt: string): Media => ({
+  src: `/projects/jachnoon/${name}.jpg`,
+  alt,
+  width: 2200,
+  height: 1194,
+  frame: "browser",
+});
+
+/** One night in the pot, as the scroll scene shows it. */
+export const jachnoonNight = [
+  { time: "22:00", caption: "The pot goes on", media: jachnoonShot("night-intro", "22:00 — the night begins") },
+  { time: "01:50", caption: "Lid on, lowest flame", media: jachnoonShot("night-0150", "01:50 — the pot is sealed") },
+  { time: "05:30", caption: "Everyone's asleep", media: jachnoonShot("night-0530", "05:30 — dawn breaks") },
+  { time: "08:30", caption: "Lid off. Good morning.", media: jachnoonShot("morning", "08:30 — the pot opens") },
+];
+
 export const debutDrills = [
   debutVideo("fireball_dribble", "Fireball Dribble"),
   debutVideo("four_corners", "Four Corners"),
@@ -200,6 +216,65 @@ export const projects: Project[] = [
       mondialShot("knockout", "Knockout bracket with penalties"),
       mondialShot("community", "Community predictions"),
       mondialShot("groups", "Group stage with live standings"),
+    ],
+  },
+  {
+    slug: "jachnoon",
+    title: "Talma's Jachnoon",
+    tagline: "Scroll through one night in the pot — then order Shabbat breakfast on WhatsApp.",
+    summary:
+      "A Hebrew, right‑to‑left site for a home kitchen that sells Yemenite jachnoon on Saturday mornings. The page tells the dish's overnight story as a scroll‑driven scene — a clock runs from 22:00 to 08:30 while the sky turns from night to dawn and the lid finally lifts — then hands off to a menu that builds a WhatsApp order in a few taps.",
+    year: "2026",
+    status: "Small business · Hebrew (RTL)",
+    role: "Solo — design, illustration & development",
+    platforms: ["Web (mobile‑first)"],
+    stack: ["Vanilla JavaScript", "HTML / CSS", "SVG illustration", "WhatsApp click‑to‑chat"],
+    accent: "#f0a94a",
+    accent2: "#c4402b",
+    cover: jachnoonShot("morning", "08:30 — the lid lifts on a full pot"),
+    problem:
+      "A one‑woman kitchen that cooks once a week took orders through scattered calls and messages — no menu or prices in one place, and nothing that showed why jachnoon is worth waking up for.",
+    solution:
+      "One static page with no backend: a scroll story sells the slow overnight cooking, and a menu with a live order slip turns each choice into a ready‑to‑send WhatsApp message to the owner.",
+    features: [
+      { title: "A night in one scroll", body: "Scrolling runs a clock from 22:00 to 08:30 while stars fade, dawn breaks, the sun rises and the lid comes off." },
+      { title: "Hand‑drawn SVG", body: "The pot, dough rolls, brown eggs and dips are drawn in SVG from shared gradients and patterns — no stock art." },
+      { title: "WhatsApp ordering", body: "Steppers build an order slip with live totals; one tap opens WhatsApp with the items, total, name and pickup time." },
+      { title: "Floating order bar", body: "Once something is in the order, a bar follows you down the page — and steps aside when the slip itself is on screen." },
+      { title: "Native right‑to‑left", body: "Written in Hebrew from the first line, with Waze, call and WhatsApp links for a phone‑first audience." },
+      { title: "One place to edit", body: "Menu, prices, hours, address and phone live in a single config object, so details change without touching the layout." },
+    ],
+    stats: [
+      { value: "10.5h", label: "Of overnight cooking, told in one scroll" },
+      { value: "6", label: "Story beats, from rolling the dough to opening the pot" },
+      { value: "0", label: "Servers, frameworks or build steps" },
+      { value: "1", label: "Config object for the menu, prices and hours" },
+    ],
+    engineering: [
+      {
+        title: "One number drives the scene",
+        body: "Scroll progress is read once per animation frame and turned into a handful of CSS custom properties — stars, dawn, morning, sun, lid — each eased with smoothstep. Every layer animates in plain CSS, with no animation library.",
+      },
+      {
+        title: "A clock that tells the story",
+        body: "Progress maps onto 10.5 hours in 10‑minute steps. Captions switch as the clock passes each story beat, and it reaches 08:30 just before the lid lifts — the moment pickup opens.",
+      },
+      {
+        title: "Orders without a backend",
+        body: "The order is written into a WhatsApp click‑to‑chat link as a formatted, URL‑encoded message, so the business gets structured orders with no server, database or fees.",
+      },
+      {
+        title: "A bar that knows where you are",
+        body: "An IntersectionObserver watches the order slip; the floating bar only appears when there's an order and the slip is off screen, and toggles its tab order and aria‑hidden with it.",
+      },
+    ],
+    gallery: [
+      jachnoonShot("night-0150", "01:50 — the clock runs through the night"),
+      jachnoonShot("night-0530", "05:30 — dawn over the pot"),
+      jachnoonShot("menu", "The menu"),
+      jachnoonShot("order", "Order slip, sent on WhatsApp"),
+      jachnoonShot("info", "When and where — Waze, call and WhatsApp"),
+      jachnoonShot("night-intro", "22:00 — where the story starts"),
     ],
   },
 ];
